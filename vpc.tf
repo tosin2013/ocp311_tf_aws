@@ -6,9 +6,9 @@ resource "aws_vpc" "ocp311" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-vpc"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-vpc"
+    })
   )
 }
 
@@ -18,9 +18,9 @@ resource "aws_internet_gateway" "ocp311" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-internet-gateway"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-internet-gateway"
+    })
   )
 }
 
@@ -32,9 +32,9 @@ resource "aws_subnet" "public_subnet" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-public-subnet"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-public-subnet"
+    })
   )
 }
 
@@ -49,9 +49,9 @@ resource "aws_route_table" "public_route_table" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-public-route-table"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-public-route-table"
+    })
   )
 }
 
@@ -67,9 +67,9 @@ resource "aws_eip" "natgateway_eip" {
     
     tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-nat-gateway-eip"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-nat-gateway-eip"
+    })
   )
 }
 
@@ -81,9 +81,9 @@ resource "aws_nat_gateway" "private_natgateway" {
 
     tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-private-nat-gateway"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-private-nat-gateway"
+    })
   )
 }
 
@@ -95,9 +95,9 @@ resource "aws_subnet" "private_subnet" {
  
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-private-subnet"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-private-subnet"
+    })
   )
 }
 
@@ -111,9 +111,9 @@ resource "aws_route_table" "private_route_table" {
 
   tags = merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-private-route-table"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-private-route-table"
+    })
   )
 }
 

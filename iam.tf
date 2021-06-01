@@ -19,9 +19,9 @@ EOF
   
   tags =merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-master-role"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-master-role"
+    })
   )
 }
 
@@ -46,9 +46,9 @@ EOF
 
   tags =merge(
     local.common_tags,
-    map(
-      "Name", "${local.cluster_id}-worker-role"
-    )
+    tomap({
+      "Name" = "${local.cluster_id}-worker-role"
+    })
   )
 }
 

@@ -5,11 +5,33 @@ Deploy Openshift Container Platform (OCP) v3.11 to Amazon Web Services (AWS) via
 - Creates a basic OCP v3.11 cluster with a single master node, single compute node, and a bastion.
 
 # To Use
+- Install and configure awscli
+  ```bash
+  curl -OL https://raw.githubusercontent.com/tosin2013/openshift-4-deployment-notes/master/aws/configure-aws-cli.sh
+  chmod +x configure-aws-cli.sh
+  ./configure-aws-cli.sh -i 
+  ```
+
+- Install [Terraform](https://www.terraform.io/downloads.html)
+  ```bash
+  terraform --version
+  Terraform v0.15.4
+  on linux_amd64
+  + provider registry.terraform.io/hashicorp/aws v3.42.0
+  + provider registry.terraform.io/hashicorp/null v3.1.0
+  + provider registry.terraform.io/hashicorp/template v2.2.0
+  ```
 
 - (Optional) Copy/rename `terraform.tfvars.example` to `terraform.tfvars` and fill in the information (otherwise these will be prompted on apply):
   ```bash
   mv terraform.tfvars.example terraform.tfvars
   ```
+
+- Initialize and test the Terraform configuration.
+  ```bash
+  terraform init && terraform plan
+  ```
+
 - Initialize and apply the Terraform configuration. Provide verification to deploy OCP v3.11 (add `-auto-approve` to apply without user verification):
   ```bash
   terraform init && terraform apply

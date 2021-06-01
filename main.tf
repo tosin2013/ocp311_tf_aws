@@ -9,10 +9,10 @@ provider "aws" {
 # Create local variables for tags and cluster ID
 locals {
   cluster_id = "${var.cluster_user_id}-${var.cluster_name}"
-  common_tags = map(
-    "Cluster", local.cluster_id,
-    "kubernetes.io/cluster/${local.cluster_id}", "owned"
-  )
+  common_tags = tomap({
+    "Cluster" = local.cluster_id,
+    "kubernetes.io/cluster/${local.cluster_id}" = "owned"
+  })
   cluster_domain        = "${local.cluster_id}.${var.aws_base_dns_domain}"
   cluster_master_domain = "master.${local.cluster_domain}"
   cluster_subdomain     = "apps.${local.cluster_domain}"
